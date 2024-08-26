@@ -1,35 +1,34 @@
 import style from "./style.module.css";
-import { Link } from "react-router-dom";
 
-const Aside = () => {
+const Aside = ({ setActiveSection }) => {
   return (
     <aside className={style.asideContainer}>
       <div className={style.asideInner}>
         <h1>마이페이지</h1>
         <div className={style.menuContainer}>
           <div className={style.menuBox}>
-            <Link to="" className={style.menu}>
+            <a href="#list" onClick={() => setActiveSection("list")}>
               주문내역
-            </Link>{" "}
+            </a>
           </div>
           <br />
           <div className={style.menuBox}>
-            <Link to="" className={style.menu}>
+            <a href="#exchange" onClick={() => setActiveSection("exchange")}>
               반품/교환 신청
-            </Link>{" "}
+            </a>
           </div>
           <br />
           <div className={style.menuBox}>
-            <Link to="" className={style.menu}>
+            <a href="#bookmark" onClick={() => setActiveSection("bookmark")}>
               찜 리스트
-            </Link>
+            </a>
           </div>
           <br />
-          <div className={style.menuBox}>
-            <Link to="" className={style.menu}>
-              로그아웃
-            </Link>
-          </div>
+          {/* <div className={style.menuBox}>
+            <a href='#info' onClick={() => setActiveSection('info')}>
+              개인정보확인
+            </a>
+          </div> */}
         </div>
       </div>
     </aside>
