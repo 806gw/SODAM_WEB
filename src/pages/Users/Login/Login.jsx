@@ -9,31 +9,19 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [memberId, setMemberId] = useState("");
-  const [password, setPassword] = useState("");
+  const [memberPassword, setMemberPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await login(memberId, password);
-      const userRole = response?.data?.userRole;
-
-      // 로컬 스토리지에 사용자 정보 저장
-      localStorage.setItem("userInfo", JSON.stringify(response.data));
-
-      alert("로그인 되었습니다!");
-
-      // 사용자 역할에 따라 리디렉션
-      userRole === "buyer" ? navigate("/buyer-home") : navigate("/seller-home");
-    } catch (error) {
-      console.error(error);
-      alert("로그인에 실패하였습니다.");
-    }
+    navigate("/sellerHome");
   };
+
   return (
     <div className={style.background}>
       <div className={style.loginContainer}>
-        <h1>로그인</h1> <br /> <br />
-        <form className={style.loginForm} onSubmit={handleSubmit}>
+        <h1>로그인</h1>
+        <br />
+        <br />
+        <div className={style.loginForm}>
           <div>
             <p>아이디</p>
             <input
@@ -43,7 +31,8 @@ const Login = () => {
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
             />
-            <br /> <br />
+            <br />
+            <br />
           </div>
           <div>
             <p>비밀번호</p>
@@ -51,15 +40,16 @@ const Login = () => {
               type="password"
               placeholder="비밀번호"
               className={style.passwordInput}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={memberPassword}
+              onChange={(e) => setMemberPassword(e.target.value)}
             />
-            <br /> <br />
+            <br />
+            <br />
           </div>
-          <button type="submit" className={style.loginBtn}>
+          <button className={style.loginBtn} onClick={handleSubmit}>
             로그인
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

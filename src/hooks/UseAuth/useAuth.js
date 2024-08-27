@@ -72,13 +72,13 @@ const useAuth = () => {
     }
   };
 
-  const login = async (memberId, password) => {
+  const login = async (memberId, memberPassword) => {
     setLoading(true);
     setError(null);
     try {
       const response = await axiosInstance.post("/auth/sign_in", {
         memberId,
-        password,
+        memberPassword,
       });
       setData(response.data);
       return response;
